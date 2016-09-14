@@ -19,7 +19,7 @@ import static org.testng.Assert.assertEquals;
 /**
  * Created by DELL on 10.09.16.
  */
-public class RestAssuredTests {
+public class RestAssuredTests extends TestBase {
 
     @BeforeClass
     public void init() {
@@ -51,4 +51,5 @@ public class RestAssuredTests {
         JsonElement parsed = new JsonParser().parse(json);
         return parsed.getAsJsonObject().get("issue_id").getAsInt();
     }
+
 }

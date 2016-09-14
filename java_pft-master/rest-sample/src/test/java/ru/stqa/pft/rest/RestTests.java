@@ -17,7 +17,7 @@ import static org.testng.Assert.assertEquals;
 /**
  * Created by DELL on 10.09.16.
  */
-public class RestTests {
+public class RestTests extends TestBase {
 
     @Test
     public void testCreateIssue() throws IOException {
@@ -29,11 +29,13 @@ public class RestTests {
         assertEquals(newIssues, oldIssues);
     }
 
+
     private Set<Issue> getIssues() throws IOException {
         String json = getExecuter().execute(Request.Get("http://demo.bugify.com/api/issues.json")).returnContent().asString();
         JsonElement parsed = new JsonParser().parse(json);
         JsonElement issues = parsed.getAsJsonObject().get("issues");
-        return new Gson().fromJson(issues, new TypeToken<Set<Issue>>(){}.getType());
+        return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {
+        }.getType());
     }
 
     private Executor getExecuter() {
